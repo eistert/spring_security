@@ -1,0 +1,13 @@
+springSecurity 基本原理
+
+spring Security 过滤器链
+
+1.主要的过滤器链（位置是不能变的）
+username password authentication filter (处理表单登录) ---  basic Authentication filter  (处理http basic 登录)
+
+-------filterSecurity Interceptor(最后一层过滤器)  根据前面的过滤器返回的信息，决定请求能不能进入到controller。
+
+2.如何用户信息获取逻辑：UserDetailsService ---loadUserByUsername()----拿到用户信息
+
+
+3.处理用户信息获取逻辑 UserDetailsService  处理用户校验逻辑  UserDetails 处理密码加密解密 PasswordEncoder
