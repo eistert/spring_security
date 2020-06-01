@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    driver-class-name:  com.mysql.jdbc.Driver
+    url:  jdbc:mysql://rm-2zeh3pg7496pm650xro.mysql.rds.aliyuncs.com:3306/imooc-security?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
+    username: eistert
+    password: 2faybPclkdeYZRpK
+# 关闭security 默认配置
+security:
+  basic:
+    enabled:  false
+management:
+  health:
+    redis:
+      enabled: false

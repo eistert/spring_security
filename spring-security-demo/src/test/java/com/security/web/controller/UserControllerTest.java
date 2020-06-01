@@ -48,15 +48,15 @@ public class UserControllerTest {
      *
      * @throws Exception
      */
-    @Test
-    public void whenUploadSuccess() throws Exception {
-        String result = mockMvc.perform(fileUpload("/file")
-                // file: 请求参数名字  test.txt: 文件名   contentType ： multipart/form-data  hello upload： 文件内容要求比特数组
-                .file(new MockMultipartFile("file", "test.txt", "multipart/form-data", "hello upload".getBytes("UTF-8"))))
-                .andExpect(status().isOk())
-                .andReturn().getResponse().getContentAsString();
-        System.out.println(result);
-    }
+//    @Test
+//    public void whenUploadSuccess() throws Exception {
+//        String result = mockMvc.perform(fileUpload("/file")
+//                // file: 请求参数名字  test.txt: 文件名   contentType ： multipart/form-data  hello upload： 文件内容要求比特数组
+//                .file(new MockMultipartFile("file", "test.txt", "multipart/form-data", "hello upload".getBytes("UTF-8"))))
+//                .andExpect(status().isOk())
+//                .andReturn().getResponse().getContentAsString();
+//        System.out.println(result);
+//    }
 
     /**
      * 查询用户信息
@@ -67,7 +67,8 @@ public class UserControllerTest {
     public void whenQuerySuccess() throws Exception {
         String result = mockMvc.perform(
                 // 模拟发出get请求
-                get("/user").param("username", "jojo").param("age", "18").param("ageTo", "60").param("xxx", "yyy")
+                get("/user")
+//                        .param("username", "jojo").param("age", "18").param("ageTo", "60").param("xxx", "yyy")
                         // .param("size", "15")
                         // .param("page", "3")
                         // .param("sort", "age,desc")
@@ -77,93 +78,92 @@ public class UserControllerTest {
                 .andExpect(status().isOk())
                 // 期望的集合长度是3
                 .andExpect(jsonPath("$.length()").value(3))
-                //
                 .andReturn().getResponse().getContentAsString();
 
         System.out.println(result);
     }
 
 
-    @Test
-    public void whenGetInfoSuccess() throws Exception {
-        String result = mockMvc.perform(get("/user/1")
-                .contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.username").value("tom"))
-                .andReturn().getResponse().getContentAsString();
+//    @Test
+//    public void whenGetInfoSuccess() throws Exception {
+//        String result = mockMvc.perform(get("/user/1")
+//                .contentType(MediaType.APPLICATION_JSON_UTF8))
+//                .andExpect(status().isOk())
+//                .andExpect(jsonPath("$.username").value("tom"))
+//                .andReturn().getResponse().getContentAsString();
+//
+//        System.out.println(result);
+//    }
+//
+//    @Test
+//    public void whenGetInfoFail() throws Exception {
+//        // 模拟发出
+//        mockMvc.perform(get("/user/a")
+//                .contentType(MediaType.APPLICATION_JSON_UTF8))
+//                .andExpect(status().is4xxClientError());
+//    }
 
-        System.out.println(result);
-    }
-
-    @Test
-    public void whenGetInfoFail() throws Exception {
-        // 模拟发出
-        mockMvc.perform(get("/user/a")
-                .contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(status().is4xxClientError());
-    }
-
-    @Test
-    public void whenCreateSuccess() throws Exception {
-
-        Date date = new Date();
-        System.out.println(date.getTime());
-        String content = "{\"username\":\"tom\",\"password\":null,\"birthday\":" + date.getTime() + "}";
-        String reuslt = mockMvc.perform(post("/user").contentType(MediaType.APPLICATION_JSON_UTF8)
-                .content(content))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value("1"))
-                .andReturn().getResponse().getContentAsString();
-
-        System.out.println(reuslt);
-    }
-
-    /**
-     * 创建失败测试用例
-     *
-     * @throws Exception
-     */
-    @Test
-    public void whenCreateFail() throws Exception {
-
-        Date date = new Date();
-        System.out.println(date.getTime());
-        String content = "{\"username\":\"tom\",\"password\":null,\"birthday\":" + date.getTime() + "}";
-        String reuslt = mockMvc.perform(post("/user").contentType(MediaType.APPLICATION_JSON_UTF8)
-                .content(content))
-//				.andExpect(status().isOk())
-//				.andExpect(jsonPath("$.id").value("1"))
-                .andReturn().getResponse().getContentAsString();
-
-        System.out.println(reuslt);
-    }
+//    @Test
+//    public void whenCreateSuccess() throws Exception {
+//
+//        Date date = new Date();
+//        System.out.println(date.getTime());
+//        String content = "{\"username\":\"tom\",\"password\":null,\"birthday\":" + date.getTime() + "}";
+//        String reuslt = mockMvc.perform(post("/user").contentType(MediaType.APPLICATION_JSON_UTF8)
+//                .content(content))
+//                .andExpect(status().isOk())
+//                .andExpect(jsonPath("$.id").value("1"))
+//                .andReturn().getResponse().getContentAsString();
+//
+//        System.out.println(reuslt);
+//    }
+//
+//    /**
+//     * 创建失败测试用例
+//     *
+//     * @throws Exception
+//     */
+//    @Test
+//    public void whenCreateFail() throws Exception {
+//
+//        Date date = new Date();
+//        System.out.println(date.getTime());
+//        String content = "{\"username\":\"tom\",\"password\":null,\"birthday\":" + date.getTime() + "}";
+//        String reuslt = mockMvc.perform(post("/user").contentType(MediaType.APPLICATION_JSON_UTF8)
+//                .content(content))
+////				.andExpect(status().isOk())
+////				.andExpect(jsonPath("$.id").value("1"))
+//                .andReturn().getResponse().getContentAsString();
+//
+//        System.out.println(reuslt);
+//    }
 
     /**
      * 修改测试用例
      *
      * @throws Exception
      */
-    @Test
-    public void whenUpdateSuccess() throws Exception {
-
-        Date date = new Date(LocalDateTime.now().plusYears(1).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
-        System.out.println(date.getTime());
-        String content = "{\"id\":\"1\", \"username\":\"tom\",\"password\":null,\"birthday\":" + date.getTime() + "}";
-        String reuslt = mockMvc.perform(put("/user/1").contentType(MediaType.APPLICATION_JSON_UTF8)
-                .content(content))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value("1"))
-                .andReturn().getResponse().getContentAsString();
-
-        System.out.println(reuslt);
-    }
-
-    @Test
-    public void whenDeleteSuccess() throws Exception {
-        mockMvc.perform(delete("/user/1")
-                .contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(status().isOk());
-    }
+//    @Test
+//    public void whenUpdateSuccess() throws Exception {
+//
+//        Date date = new Date(LocalDateTime.now().plusYears(1).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
+//        System.out.println(date.getTime());
+//        String content = "{\"id\":\"1\", \"username\":\"tom\",\"password\":null,\"birthday\":" + date.getTime() + "}";
+//        String reuslt = mockMvc.perform(put("/user/1").contentType(MediaType.APPLICATION_JSON_UTF8)
+//                .content(content))
+//                .andExpect(status().isOk())
+//                .andExpect(jsonPath("$.id").value("1"))
+//                .andReturn().getResponse().getContentAsString();
+//
+//        System.out.println(reuslt);
+//    }
+//
+//    @Test
+//    public void whenDeleteSuccess() throws Exception {
+//        mockMvc.perform(delete("/user/1")
+//                .contentType(MediaType.APPLICATION_JSON_UTF8))
+//                .andExpect(status().isOk());
+//    }
 
 
 }
