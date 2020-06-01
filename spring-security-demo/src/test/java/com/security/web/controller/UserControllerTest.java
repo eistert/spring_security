@@ -1,4 +1,4 @@
-package com.imooc.web.controller;
+package com.security.web.controller;
 
 import org.junit.Before;
 import org.junit.Test;
