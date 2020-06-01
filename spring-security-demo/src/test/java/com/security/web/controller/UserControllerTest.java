@@ -84,39 +84,39 @@ public class UserControllerTest {
     }
 
 
-//    @Test
-//    public void whenGetInfoSuccess() throws Exception {
-//        String result = mockMvc.perform(get("/user/1")
-//                .contentType(MediaType.APPLICATION_JSON_UTF8))
-//                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$.username").value("tom"))
-//                .andReturn().getResponse().getContentAsString();
-//
-//        System.out.println(result);
-//    }
-//
-//    @Test
-//    public void whenGetInfoFail() throws Exception {
-//        // 模拟发出
-//        mockMvc.perform(get("/user/a")
-//                .contentType(MediaType.APPLICATION_JSON_UTF8))
-//                .andExpect(status().is4xxClientError());
-//    }
+    @Test
+    public void whenGetInfoSuccess() throws Exception {
+        String result = mockMvc.perform(get("/user/1")
+                .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.username").value("tom"))
+                .andReturn().getResponse().getContentAsString();
 
-//    @Test
-//    public void whenCreateSuccess() throws Exception {
-//
-//        Date date = new Date();
-//        System.out.println(date.getTime());
-//        String content = "{\"username\":\"tom\",\"password\":null,\"birthday\":" + date.getTime() + "}";
-//        String reuslt = mockMvc.perform(post("/user").contentType(MediaType.APPLICATION_JSON_UTF8)
-//                .content(content))
-//                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$.id").value("1"))
-//                .andReturn().getResponse().getContentAsString();
-//
-//        System.out.println(reuslt);
-//    }
+        System.out.println(result);
+    }
+
+    @Test
+    public void whenGetInfoFail() throws Exception {
+        // 模拟发出
+        mockMvc.perform(get("/user/a")
+                .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    public void whenCreateSuccess() throws Exception {
+
+        Date date = new Date();
+        System.out.println(date.getTime());
+        String content = "{\"username\":\"tom\",\"password\":null,\"birthday\":" + date.getTime() + "}";
+        String reuslt = mockMvc.perform(post("/user").contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(content))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value("1"))
+                .andReturn().getResponse().getContentAsString();
+
+        System.out.println(reuslt);
+    }
 //
 //    /**
 //     * 创建失败测试用例
@@ -143,20 +143,20 @@ public class UserControllerTest {
      *
      * @throws Exception
      */
-//    @Test
-//    public void whenUpdateSuccess() throws Exception {
-//
-//        Date date = new Date(LocalDateTime.now().plusYears(1).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
-//        System.out.println(date.getTime());
-//        String content = "{\"id\":\"1\", \"username\":\"tom\",\"password\":null,\"birthday\":" + date.getTime() + "}";
-//        String reuslt = mockMvc.perform(put("/user/1").contentType(MediaType.APPLICATION_JSON_UTF8)
-//                .content(content))
-//                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$.id").value("1"))
-//                .andReturn().getResponse().getContentAsString();
-//
-//        System.out.println(reuslt);
-//    }
+    @Test
+    public void whenUpdateSuccess() throws Exception {
+
+        Date date = new Date(LocalDateTime.now().plusYears(1).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
+        System.out.println(date.getTime());
+        String content = "{\"id\":\"1\", \"username\":\"tom\",\"password\":null,\"birthday\":" + date.getTime() + "}";
+        String reuslt = mockMvc.perform(put("/user/1").contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(content))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value("1"))
+                .andReturn().getResponse().getContentAsString();
+
+        System.out.println(reuslt);
+    }
 //
 //    @Test
 //    public void whenDeleteSuccess() throws Exception {

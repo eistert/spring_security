@@ -17,11 +17,12 @@ import org.springframework.stereotype.Component;
  * @author zhailiang
  */
 @Component
-public class User {
+public class
+User {
 
+    // 使用接口声明视图
     public interface UserSimpleView {
     }
-
 
     public interface UserDetailView extends UserSimpleView {
     }
