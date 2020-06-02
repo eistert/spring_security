@@ -24,14 +24,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 public class WebConfig extends WebMvcConfigurerAdapter {
 
-    @SuppressWarnings("unused")
-    @Autowired
-    private TimeInterceptor timeInterceptor;
+//    @SuppressWarnings("unused")
+//    @Autowired
+//    private TimeInterceptor timeInterceptor;
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(timeInterceptor);
-    }
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        registry.addInterceptor(timeInterceptor);
+//    }
 
 //    // 异步请求配置
 //    @Override
@@ -39,21 +39,21 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 //        super.configureAsyncSupport(configurer);
 //    }
 
-    @Bean
-    public FilterRegistrationBean timeFilter() {
-
-        FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-
-        TimeFilter timeFilter = new TimeFilter();
-        registrationBean.setFilter(timeFilter);
-
-        // 可以指定路径起作用
-        List<String> urls = new ArrayList<>();
-        urls.add("/*");
-        registrationBean.setUrlPatterns(urls);
-
-        return registrationBean;
-
-    }
+//    @Bean
+//    public FilterRegistrationBean timeFilter() {
+//
+//        FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+//
+//        TimeFilter timeFilter = new TimeFilter();
+//        registrationBean.setFilter(timeFilter);
+//
+//        // 可以指定路径起作用
+//        List<String> urls = new ArrayList<>();
+//        urls.add("/*");
+//        registrationBean.setUrlPatterns(urls);
+//
+//        return registrationBean;
+//
+//    }
 
 }

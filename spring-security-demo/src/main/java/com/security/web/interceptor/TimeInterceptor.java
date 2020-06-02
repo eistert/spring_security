@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author zhailiang
  *
  */
-@Component
+//@Component
 public class TimeInterceptor implements HandlerInterceptor {
 
     /* (non-Javadoc)

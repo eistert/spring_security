@@ -2,15 +2,19 @@ package com.security.web.controller;
 
 import com.security.dto.User;
 import com.security.dto.UserQueryCondition;
+import com.security.security.core.properties.SecurityProperties;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.Authentication;
 import org.springframework.validation.BindingResult;
 
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,14 +44,14 @@ import io.swagger.annotations.ApiParam;
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired
+//    @Autowired
 //    private ProviderSignInUtils providerSignInUtils;
 
 //	@Autowired
 //	private AppSingUpUtils appSingUpUtils;
 
-//	@Autowired
-//	private SecurityProperties securityProperties;
+    @Autowired
+    private SecurityProperties securityProperties;
 
 //    @PostMapping("/regist")
 //    public void regist(User user, HttpServletRequest request) {
@@ -58,20 +62,20 @@ public class UserController {
 ////		appSingUpUtils.doPostSignUp(new ServletWebRequest(request), userId);
 //    }
 
-//    @GetMapping("/me")
-//    public Object getCurrentUser(Authentication user, HttpServletRequest request) throws {
+    @GetMapping("/me")
+    public Object getCurrentUser(Authentication user, HttpServletRequest request) throws Exception {
+
+        String token = StringUtils.substringAfter(request.getHeader("Authorization"), "bearer ");
+
+//        Claims claims = Jwts.parser().setSigningKey(securityProperties.getOauth2().getJwtSigningKey().getBytes("UTF-8"))
+//                .parseClaimsJws(token).getBody();
 //
-////		String token = StringUtils.substringAfter(request.getHeader("Authorization"), "bearer ");
-////
-////		Claims claims = Jwts.parser().setSigningKey(securityProperties.getOauth2().getJwtSigningKey().getBytes("UTF-8"))
-////					.parseClaimsJws(token).getBody();
-////
-////		String company = (String) claims.get("company");
-////
-////		System.out.println(company);
-//
-//        return user;
-//    }
+//        String company = (String) claims.get("company");
+
+//        System.out.println(company);
+
+        return user;
+    }
 
     @PostMapping
     @ApiOperation(value = "创建用户")

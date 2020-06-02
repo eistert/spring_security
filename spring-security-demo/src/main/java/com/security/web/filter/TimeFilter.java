@@ -34,11 +34,11 @@ public class TimeFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        System.out.println("time filter start");
-        long start = new Date().getTime();
+//        System.out.println("time filter start");
+//        long start = new Date().getTime();
         chain.doFilter(request, response);
-        System.out.println("time filter 耗时:" + (new Date().getTime() - start));
-        System.out.println("time filter finish");
+//        System.out.println("time filter 耗时:" + (new Date().getTime() - start));
+//        System.out.println("time filter finish");
     }
 
     /* (non-Javadoc)
@@ -46,7 +46,7 @@ public class TimeFilter implements Filter {
      */
     @Override
     public void init(FilterConfig arg0) throws ServletException {
-        System.out.println("time filter init");
+//        System.out.println("time filter init");
     }
 
 }
