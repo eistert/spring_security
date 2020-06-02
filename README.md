@@ -86,5 +86,6 @@
     
     获取认证用户信息
    
-  
+## 图形验证码
+   ![图形验证码基本参数配置](spring-security-browser/src/main/resources/picture/图形验证码基本参数配置.png)
 

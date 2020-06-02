@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.security.core.validate.code.impl;
+package com.security.core.validate.code;
 
 import java.awt.image.BufferedImage;
 import java.time.LocalDateTime;

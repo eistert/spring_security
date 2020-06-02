@@ -1,7 +1,7 @@
 package com.security.security.browser;
 
 import com.security.core.properties.SecurityProperties;
-import com.security.core.validate.code.impl.ValidateCodeFilter;
+import com.security.core.validate.code.ValidateCodeFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -49,6 +49,11 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         ValidateCodeFilter validateCodeFilter = new ValidateCodeFilter();
         validateCodeFilter.setAuthenticationFailureHandler(imoocAuthenctiationFailureHandler);
+        validateCodeFilter.setSecurityProperties(securityProperties);
+        // 调用初始化方法
+        validateCodeFilter.afterPropertiesSet();
+
+
         // 表单登录
         http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
                 .formLogin()
