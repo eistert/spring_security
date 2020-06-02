@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.security.security.support;
+package com.security.core.support;
 
 /**
  * 简单响应的封装类

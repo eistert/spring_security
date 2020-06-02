@@ -1,5 +1,4 @@
 ## spring_security
-
     spring-security-core:核心业务逻辑
     spring-security-browser:浏览器安全特定代码
     spring-security-app:app相关特定代码
@@ -18,10 +17,6 @@
      5.RESTful只是一种风格，并不是强制的标准；
     
 ## JsonPath gitHub 网址
-    
-    
-    
-    
     
     
 ## filter interceptor aspect
@@ -75,7 +70,6 @@
     
 ## 处理不同类型的请求
    ![处理不同类型的请求](spring-security-browser/src/main/resources/picture/处理不同类型的请求.png)
-   
    
    
 ## 个性化用户认证流程

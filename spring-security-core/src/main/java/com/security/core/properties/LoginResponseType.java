@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.security.security.core.properties;
+package com.security.core.properties;
 
 /**
  * 认证成功后的响应方式

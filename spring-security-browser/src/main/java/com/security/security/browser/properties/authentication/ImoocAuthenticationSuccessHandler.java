@@ -9,9 +9,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.security.security.core.properties.LoginResponseType;
-import com.security.security.core.properties.SecurityProperties;
-import com.security.security.support.SimpleResponse;
+import com.security.core.properties.LoginResponseType;
+import com.security.core.properties.SecurityProperties;
+import com.security.core.support.SimpleResponse;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

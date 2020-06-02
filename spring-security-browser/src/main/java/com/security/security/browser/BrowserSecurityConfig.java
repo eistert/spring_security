@@ -1,17 +1,17 @@
 package com.security.security.browser;
 
-import com.security.security.core.properties.SecurityProperties;
+import com.security.core.properties.SecurityProperties;
+import com.security.core.validate.code.impl.ValidateCodeFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 
 /**
@@ -47,8 +47,11 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        ValidateCodeFilter validateCodeFilter = new ValidateCodeFilter();
+        validateCodeFilter.setAuthenticationFailureHandler(imoocAuthenctiationFailureHandler);
         // 表单登录
-        http.formLogin()
+        http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
+                .formLogin()
 //        http.httpBasic()
                 // 自定义登录页面
                 .loginPage("/authentication/require")
@@ -60,7 +63,10 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 // 对请求授权
                 .authorizeRequests()
-                .antMatchers("/authentication/require", securityProperties.getBrowser().getSignInPage()).permitAll()
+                .antMatchers("/authentication/require",
+                        securityProperties.getBrowser().getSignInPage(),
+                        "/code/image"
+                ).permitAll()
                 // 所有的请求
                 .anyRequest()
                 // 都要认证授权

@@ -1,9 +1,9 @@
 /**
  *
  */
-package com.security.security.core;
+package com.security.core;
 
-import com.security.security.core.properties.SecurityProperties;
+import com.security.core.properties.SecurityProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 

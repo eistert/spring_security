@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.security.security.core.properties;
+package com.security.core.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

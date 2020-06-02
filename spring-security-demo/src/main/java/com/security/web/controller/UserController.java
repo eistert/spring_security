@@ -2,7 +2,7 @@ package com.security.web.controller;
 
 import com.security.dto.User;
 import com.security.dto.UserQueryCondition;
-import com.security.security.core.properties.SecurityProperties;
+import com.security.core.properties.SecurityProperties;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
@@ -30,12 +30,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.request.ServletWebRequest;
 
 import com.fasterxml.jackson.annotation.JsonView;
-
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 
 /**
  * @author zhailiang
