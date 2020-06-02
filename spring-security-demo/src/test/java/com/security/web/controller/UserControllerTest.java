@@ -48,15 +48,15 @@ public class UserControllerTest {
      *
      * @throws Exception
      */
-//    @Test
-//    public void whenUploadSuccess() throws Exception {
-//        String result = mockMvc.perform(fileUpload("/file")
-//                // file: 请求参数名字  test.txt: 文件名   contentType ： multipart/form-data  hello upload： 文件内容要求比特数组
-//                .file(new MockMultipartFile("file", "test.txt", "multipart/form-data", "hello upload".getBytes("UTF-8"))))
-//                .andExpect(status().isOk())
-//                .andReturn().getResponse().getContentAsString();
-//        System.out.println(result);
-//    }
+    @Test
+    public void whenUploadSuccess() throws Exception {
+        String result = mockMvc.perform(fileUpload("/file")
+                // file: 请求参数名字  test.txt: 文件名   contentType ： multipart/form-data  hello upload： 文件内容要求比特数组
+                .file(new MockMultipartFile("file", "test.txt", "multipart/form-data", "hello upload".getBytes("UTF-8"))))
+                .andExpect(status().isOk())
+                .andReturn().getResponse().getContentAsString();
+        System.out.println(result);
+    }
 
     /**
      * 查询用户信息
