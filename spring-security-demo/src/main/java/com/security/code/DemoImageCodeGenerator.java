@@ -1,6 +1,6 @@
 //package com.security.code;
 //
-//import com.security.core.validate.code.ImageCode;
+//import com.security.core.image.ImageCode;
 //import com.security.core.validate.code.ValidateCodeGenerator;
 //import org.springframework.stereotype.Component;
 //import org.springframework.web.context.request.ServletWebRequest;

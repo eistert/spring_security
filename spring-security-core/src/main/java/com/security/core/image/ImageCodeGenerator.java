@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.security.core.validate.code;
+package com.security.core.image;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -9,7 +9,9 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
+import com.security.core.image.ImageCode;
 import com.security.core.properties.SecurityProperties;
+import com.security.core.validate.code.ValidateCodeGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.context.request.ServletWebRequest;

@@ -1,5 +1,5 @@
 /**
- *
+ * 
  */
 package com.security.security.browser.properties.authentication;
 
@@ -24,37 +24,39 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 /**
- * 浏览器环境下登录失败的处理器
- *
  * @author zhailiang
  *
  */
 @Component("imoocAuthenctiationFailureHandler")
 public class ImoocAuthenctiationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 
-    private Logger logger = LoggerFactory.getLogger(getClass());
+	private Logger logger = LoggerFactory.getLogger(getClass());
+	
+	@Autowired
+	private ObjectMapper objectMapper;
+	
+	@Autowired
+	private SecurityProperties securityProperties;
 
-    @Autowired
-    private ObjectMapper objectMapper;
+	
+	/* (non-Javadoc)
+	 * @see org.springframework.security.web.authentication.AuthenticationFailureHandler#onAuthenticationFailure(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, org.springframework.security.core.AuthenticationException)
+	 */
+	@Override
+	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
+			AuthenticationException exception) throws IOException, ServletException {
+		
+		logger.info("登录失败");
+		
+		if (LoginResponseType.JSON.equals(securityProperties.getBrowser().getLoginType())) {
+			response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+			response.setContentType("application/json;charset=UTF-8");
+			response.getWriter().write(objectMapper.writeValueAsString(new SimpleResponse(exception.getMessage())));
+		}else{
+			super.onAuthenticationFailure(request, response, exception);
+		}
+		
+		
+	}
 
-    @Autowired
-    private SecurityProperties securityProperties;
-
-    /* (non-Javadoc)
-     *AuthenticationException 认证过程中的异常
-     */
-    @Override
-    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
-                                        AuthenticationException exception) throws IOException, ServletException {
-
-        logger.info("登录失败");
-        if (LoginResponseType.JSON.equals(securityProperties.getBrowser().getSignInResponseType())) {
-            response.setStatus(HttpStatus.UNAUTHORIZED.value());
-            response.setContentType("application/json;charset=UTF-8");
-            response.getWriter().write(objectMapper.writeValueAsString(new SimpleResponse(exception.getMessage())));
-        } else {
-            super.onAuthenticationFailure(request, response, exception);
-        }
-
-    }
 }
