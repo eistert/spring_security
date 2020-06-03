@@ -97,5 +97,34 @@
    ![图形验证码基本参数配置](spring-security-browser/src/main/resources/picture/验证码处理器代码结构.png)
    
    
-
+   
+## OAuth协议
+    OAuth协议要解决的问题
+    
+    OAuth协议中的各种角色
+    
+        Provider 服务提供商
+        Resource Owner 资源所有者
+        第三方应用Client
+        认证服务器：Authorization Server
+        资源服务器：Resource Server  
+    
+    OAuth协议运行流程
+   ![图形验证码基本参数配置](spring-security-browser/src/main/resources/picture/OAuth协议运行流程.png)
+   
+   OAuth协议中的授权模式：
+   授权码模式（authorization code）(主)：功能最完整，流程最严密的模式，安全性最高；
+   ![图形验证码基本参数配置](spring-security-browser/src/main/resources/picture/OAuth授权码模式流程图.png)
+   
+   简化模式(implicit)(少)：
+   密码模式(resource owner password credentials)（app）：
+   客户端模式(client credentials)（少）：
+   
+## Spring Social
+   ![图形验证码基本参数配置](spring-security-browser/src/main/resources/picture/springSocial开发流程.png)
+   
+   
+## qq登录
+    腾讯开放平台
+    https://open.tencent.com/
     
