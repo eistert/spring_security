@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.security.core.properties.SecurityProperties;
+import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -45,9 +46,12 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
     public void afterPropertiesSet() throws ServletException {
         super.afterPropertiesSet();
         String[] configUrls = StringUtils.splitByWholeSeparatorPreserveAllTokens(securityProperties.getCode().getImage().getUrl(), ",");
-        for (String configUrl : configUrls) {
-            urls.add(configUrl);
+        if (ArrayUtils.isNotEmpty(configUrls)) {
+            for (String configUrl : configUrls) {
+                urls.add(configUrl);
+            }
         }
+
         // 登录请求
         urls.add("/authentication/form");
     }

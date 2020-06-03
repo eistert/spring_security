@@ -1,4 +1,4 @@
-package com.security.security.browser;
+package com.security.security.browser.config;
 
 import com.security.core.properties.SecurityProperties;
 import com.security.core.validate.code.ValidateCodeFilter;
@@ -7,11 +7,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+
+import javax.sql.DataSource;
 
 
 /**
@@ -29,6 +34,10 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     private AuthenticationSuccessHandler imoocAuthenticationSuccessHandler;
     @Autowired
     private AuthenticationFailureHandler imoocAuthenctiationFailureHandler;
+    @Autowired
+    private DataSource dataSource;
+    @Autowired
+    private UserDetailsService userDetailsService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -36,10 +45,13 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
-//    @Override
-//    public void configure(WebSecurity web) throws Exception {
-//        web.ignoring().antMatchers(HttpMethod.GET, "/**/*.css", "/**/*.js", "/**/*.png", "/**/*.gif", "/**/*.jpg");
-//    }
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository() {
+        JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
+        tokenRepository.setDataSource(dataSource);
+//		tokenRepository.setCreateTableOnStartup(true);
+        return tokenRepository;
+    }
 
     /**
      * @param http
@@ -65,6 +77,12 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
                 // 登录成功之后要调用的处理器
                 .successHandler(imoocAuthenticationSuccessHandler)
                 .failureHandler(imoocAuthenctiationFailureHandler)
+                .and()
+                // rememberMe
+                .rememberMe()
+                .tokenRepository(persistentTokenRepository())
+                .tokenValiditySeconds(securityProperties.getBrowser().getRememberMeSeconds())
+                .userDetailsService(userDetailsService)
                 .and()
                 // 对请求授权
                 .authorizeRequests()
