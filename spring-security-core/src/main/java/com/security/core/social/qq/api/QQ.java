@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.security.core.social.qq.api;
 
@@ -8,7 +8,7 @@ package com.security.core.social.qq.api;
  *
  */
 public interface QQ {
-	
-	QQUserInfo getUserInfo() throws Exception;
+
+    QQUserInfo getUserInfo();
 
 }

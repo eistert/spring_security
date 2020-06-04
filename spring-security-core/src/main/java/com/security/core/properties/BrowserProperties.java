@@ -1,5 +1,5 @@
 /**
- *
+ * 
  */
 package com.security.core.properties;
 
@@ -8,35 +8,45 @@ package com.security.core.properties;
  *
  */
 public class BrowserProperties {
+	
+	private String signUpUrl = "/imooc-signUp.html";
+	
+	private String loginPage = SecurityConstants.DEFAULT_LOGIN_PAGE_URL;
+	
+	private LoginResponseType loginType = LoginResponseType.JSON;
+	
+	private int rememberMeSeconds = 3600;
 
-    private String loginPage = SecurityConstants.DEFAULT_LOGIN_PAGE_URL;
+	public String getLoginPage() {
+		return loginPage;
+	}
 
-    private LoginResponseType loginType = LoginResponseType.JSON;
+	public void setLoginPage(String loginPage) {
+		this.loginPage = loginPage;
+	}
 
-    private int rememberMeSeconds = 3600;
+	public LoginResponseType getLoginType() {
+		return loginType;
+	}
 
-    public String getLoginPage() {
-        return loginPage;
-    }
+	public void setLoginType(LoginResponseType loginType) {
+		this.loginType = loginType;
+	}
 
-    public void setLoginPage(String loginPage) {
-        this.loginPage = loginPage;
-    }
+	public int getRememberMeSeconds() {
+		return rememberMeSeconds;
+	}
 
-    public LoginResponseType getLoginType() {
-        return loginType;
-    }
+	public void setRememberMeSeconds(int rememberMeSeconds) {
+		this.rememberMeSeconds = rememberMeSeconds;
+	}
 
-    public void setLoginType(LoginResponseType loginType) {
-        this.loginType = loginType;
-    }
+	public String getSignUpUrl() {
+		return signUpUrl;
+	}
 
-    public int getRememberMeSeconds() {
-        return rememberMeSeconds;
-    }
-
-    public void setRememberMeSeconds(int rememberMeSeconds) {
-        this.rememberMeSeconds = rememberMeSeconds;
-    }
-
+	public void setSignUpUrl(String signUpUrl) {
+		this.signUpUrl = signUpUrl;
+	}
+	
 }
