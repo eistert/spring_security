@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.Authentication;
+import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.validation.BindingResult;
 
 
@@ -32,6 +33,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import org.springframework.web.context.request.ServletWebRequest;
 
 /**
  * @author zhailiang
@@ -40,23 +42,23 @@ import com.fasterxml.jackson.annotation.JsonView;
 @RequestMapping("/user")
 public class UserController {
 
-//    @Autowired
-//    private ProviderSignInUtils providerSignInUtils;
+    @Autowired
+    private ProviderSignInUtils providerSignInUtils;
 
-//	@Autowired
-//	private AppSingUpUtils appSingUpUtils;
+//    @Autowired
+//    private AppSingUpUtils appSingUpUtils;
 
     @Autowired
     private SecurityProperties securityProperties;
 
-//    @PostMapping("/regist")
-//    public void regist(User user, HttpServletRequest request) {
-//
-//        //不管是注册用户还是绑定用户，都会拿到一个用户唯一标识。
-//        String userId = user.getUsername();
-//        providerSignInUtils.doPostSignUp(userId, new ServletWebRequest(request));
-////		appSingUpUtils.doPostSignUp(new ServletWebRequest(request), userId);
-//    }
+    @PostMapping("/regist")
+    public void regist(User user, HttpServletRequest request) {
+
+        //不管是注册用户还是绑定用户，都会拿到一个用户唯一标识。
+        String userId = user.getUsername();
+        providerSignInUtils.doPostSignUp(userId, new ServletWebRequest(request));
+//        appSingUpUtils.doPostSignUp(new ServletWebRequest(request), userId);
+    }
 
     @GetMapping("/me")
     public Object getCurrentUser(Authentication user, HttpServletRequest request) throws Exception {
